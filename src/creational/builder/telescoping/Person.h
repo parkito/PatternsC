@@ -8,52 +8,53 @@ class PersonBuilder;
 class Person {
 
 public:
-  [[nodiscard]] std::string getId() const;
+    [[nodiscard]] std::string getId() const;
 
-  [[nodiscard]] std::string getName() const;
+    [[nodiscard]] std::string getName() const;
 
-  [[nodiscard]] unsigned short getAge() const;
+    [[nodiscard]] unsigned short getAge() const;
 
-  static PersonBuilder builder();
+    static PersonBuilder builder();
 
-  friend std::ostream &operator<<(std::ostream &os, const Person &person);
+    friend std::ostream &operator<<(std::ostream &os, const Person &person);
 
-  bool operator==(const Person &person) const;
+    bool operator==(const Person &person) const;
 
-  friend class PersonBuilder;
+    friend class PersonBuilder;
 
 private:
-  std::string id;
-  std::string name;
-  unsigned short age{};
+    std::string id;
+    std::string name;
+    unsigned short age{};
 
-  Person() = default;
+    Person() = default;
 };
 
 class PersonBuilder {
 public:
-  explicit PersonBuilder();
+    explicit PersonBuilder();
 
-  PersonBuilder &withId(const std::string &id);
+    PersonBuilder &withId(const std::string &id);
 
-  PersonBuilder &withName(const std::string &name);
+    PersonBuilder &withName(const std::string &name);
 
-  PersonBuilder &withAge(unsigned short age);
+    PersonBuilder &withAge(unsigned short age);
 
-  std::unique_ptr<Person> build();
+    std::unique_ptr<Person> build();
 
 private:
-  std::unique_ptr<Person> person;
+    std::unique_ptr<Person> person;
 };
 
-struct PersonHash{
-  size_t operator()(const Person &person) const;
+struct PersonHash {
+    size_t operator()(const Person &person) const;
 };
 
 namespace std {
-template <> class hash<Person> {
-public:
-  size_t operator()(const Person &person) const;
-};
+    template<>
+    class hash<Person> {
+    public:
+        size_t operator()(const Person &person) const;
+    };
 
 } // namespace std

@@ -1,7 +1,6 @@
 #pragma onceonce
 
 #include <array>
-#include <enum.h>
 #include <iostream>
 #include <memory>
 #include <vector>

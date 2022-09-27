@@ -20,6 +20,7 @@ FetchContent_MakeAvailable(googletest)
 add_executable(
         builder_test
         src/creational/builder/telescoping/BuilderTest.cc
+        src/creational/factory_method/FactoryMethodTest.cc
 )
 target_link_libraries(
         builder_test
@@ -33,6 +34,9 @@ add_library(
         builder_lib
         SHARED
         src/creational/builder/telescoping/Person.cpp
+        src/creational/factory_method/AbstractPizza.cpp
+        src/creational/factory_method/ItalianPizza.cpp
+        src/creational/factory_method/NyPizza.cpp
 )
 target_include_directories(
         builder_lib
