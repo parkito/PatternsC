@@ -1,10 +1,10 @@
-#pragma onceonce
+#pragma once
 
 #include <array>
 #include <iostream>
 #include <memory>
 #include <vector>
-#include "PizzaFactory.h"
+#include "Enums.h"
 
 class PizzaModel {
 public:
@@ -18,31 +18,20 @@ public:
 
     virtual void cook() = 0;
 
-    friend PizzaFactory;
+    void addDiary(Edible::diary c_diary);
+
+    void addMeat(Edible::meat c_meat);
+
+    void addVeggie(Edible::veggie c_veggie);
 
 private:
     std::vector<Edible::diary> diary{};
     std::vector<Edible::meat> meat{};
     std::vector<Edible::veggie> veggie{};
 
-    void addDiary(Edible::diary c_diary);
+protected:
+    template<typename T>
+    void printComponent(std::vector<T> vec, const std::string &name);
 
-    void addMeat(Edible::meat c_meat);
-
-    void addVeggie(Edible::veggie c_veggie);
+    void printComponents(PizzaModel &pizza);
 };
-
-template<typename T>
-void printComponent(std::vector<T> vec, const std::string &name) {
-    std::cout << name + "[";
-    for (const auto &item: vec) {
-        std::cout << item << " ";
-    }
-    std::cout << "]" << std::endl;
-}
-
-void printComponents(PizzaModel &pizza) {
-    printComponent(pizza.getDiary(), "Diary");
-    printComponent(pizza.getMeat(), "Meat");
-    printComponent(pizza.getVeggie(), "Veggies");
-}

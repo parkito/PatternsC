@@ -1,4 +1,3 @@
-
 #include "ItalianPizza.h"
 
 void ItalianPizza::cook() {

@@ -1,4 +1,5 @@
 #include "PizzaModel.h"
+#include "PizzaFactory.h"
 #include <gtest/gtest.h>
 
 TEST (FactoryTestSuit, FactoryMethodTest) {

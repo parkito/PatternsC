@@ -1,4 +1,7 @@
+#pragma onceonce
+
 struct Edible {
+
     enum diary {
         milk, cheese, sourCream, jougurt
     };
