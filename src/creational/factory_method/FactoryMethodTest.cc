@@ -1,6 +1,8 @@
-#include "AbstractPizza.h"
+#include "PizzaModel.h"
+#include <gtest/gtest.h>
 
-int main() {
-  auto pizza1 = PizzaFactory::prepare(Size::big, PizzaType::norishing);
-  pizza1->cook();
+TEST (FactoryTestSuit, FactoryMethodTest) {
+    auto pizza = PizzaFactory::prepare(Edible::portion::big, Edible::pizzaType::norishing);
+
+    EXPECT_EQ (1, pizza.get()->getDiary().size());
 }

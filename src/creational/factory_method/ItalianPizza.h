@@ -1,8 +1,8 @@
 #pragma once
 
-#include "AbstractPizza.h"
+#include "PizzaModel.h"
 
-class ItalianPizza : public AbstractPizza {
+class ItalianPizza : public PizzaModel {
 public:
-  void cook() override;
+    void cook() override;
 };

@@ -34,12 +34,18 @@ add_library(
         builder_lib
         SHARED
         src/creational/builder/telescoping/Person.cpp
-        src/creational/factory_method/AbstractPizza.cpp
+        src/creational/factory_method/PizzaModel.cpp
         src/creational/factory_method/ItalianPizza.cpp
         src/creational/factory_method/NyPizza.cpp
+        src/creational/factory_method/PizzaFactory.cpp
 )
+
 target_include_directories(
         builder_lib
         PUBLIC
         src
+)
+
+include_directories(
+        src/common
 )

@@ -1,76 +1,78 @@
 #include "ItalianPizza.h"
 #include "NyPizza.h"
 
-std::unique_ptr<AbstractPizza> PizzaFactory::prepare(Size size,
-                                                     PizzaType type) {
-  std::unique_ptr<AbstractPizza> pizza;
-  if (size._to_index() == Size::small || size._to_index() == Size::large) {
-    pizza = std::make_unique<ItalianPizza>();
-  } else {
-    pizza = std::make_unique<NyPizza>();
-  }
+std::unique_ptr<PizzaModel> PizzaFactory::prepare(
+        Edible::portion size,
+        Edible::pizzaType type
+) {
+    std::unique_ptr<PizzaModel> pizza;
 
-  switch (type) {
-  case PizzaType::norishing:
-    pizza->addMeat(Meat::chicken);
-    pizza->addMeat(Meat::beef);
-    pizza->addMeat(Meat::pork);
+    if (size == Edible::portion::small || size == Edible::portion::large) {
+        pizza = std::make_unique<ItalianPizza>();
+    } else {
+        pizza = std::make_unique<NyPizza>();
+    }
 
-    pizza->addDiary(Diary::cheese);
+    switch (type) {
+        case Edible::pizzaType::norishing:
+            pizza->addMeat(Edible::meat::chicken);
+            pizza->addMeat(Edible::meat::beef);
+            pizza->addMeat(Edible::meat::pork);
 
-    pizza->addVeggie(Veggie::tomatos);
-    pizza->addVeggie(Veggie::pineapple);
-    break;
+            pizza->addDiary(Edible::diary::cheese);
 
-  case PizzaType::vegeterian:
-    pizza->addMeat(Meat::soya);
+            pizza->addVeggie(Edible::veggie::tomatos);
+            pizza->addVeggie(Edible::veggie::pineapple);
+            break;
 
-    pizza->addDiary(Diary::jougurt);
+        case Edible::pizzaType::vegeterian:
+            pizza->addMeat(Edible::meat::soya);
 
-    pizza->addVeggie(Veggie::tomatos);
-    pizza->addVeggie(Veggie::pineapple);
-    pizza->addVeggie(Veggie::lettuce);
-    break;
+            pizza->addDiary(Edible::diary::jougurt);
 
-  case PizzaType::vegan:
-    pizza->addMeat(Meat::soya);
+            pizza->addVeggie(Edible::veggie::tomatos);
+            pizza->addVeggie(Edible::veggie::pineapple);
+            pizza->addVeggie(Edible::veggie::lettuce);
+            break;
 
-    pizza->addVeggie(Veggie::tomatos);
-    pizza->addVeggie(Veggie::pineapple);
-    pizza->addVeggie(Veggie::lettuce);
-    break;
+        case Edible::pizzaType::vegan:
+            pizza->addMeat(Edible::meat::soya);
 
-  case PizzaType::noDiary:
-    pizza->addMeat(Meat::chicken);
+            pizza->addVeggie(Edible::veggie::tomatos);
+            pizza->addVeggie(Edible::veggie::pineapple);
+            pizza->addVeggie(Edible::veggie::lettuce);
+            break;
 
-    pizza->addVeggie(Veggie::tomatos);
-    pizza->addVeggie(Veggie::pineapple);
-    pizza->addVeggie(Veggie::lettuce);
-    break;
+        case Edible::pizzaType::noDiary:
+            pizza->addMeat(Edible::meat::chicken);
+            pizza->addVeggie(Edible::veggie::tomatos);
+            pizza->addVeggie(Edible::veggie::pineapple);
+            pizza->addVeggie(Edible::veggie::lettuce);
+            break;
 
-  case PizzaType::bird:
-    pizza->addMeat(Meat::chicken);
+        case Edible::pizzaType::bird:
+            pizza->addMeat(Edible::meat::chicken);
 
-    pizza->addDiary(Diary::cheese);
-    pizza->addDiary(Diary::sourCream);
-    pizza->addDiary(Diary::milk);
+            pizza->addDiary(Edible::diary::cheese);
+            pizza->addDiary(Edible::diary::sourCream);
+            pizza->addDiary(Edible::diary::milk);
 
-    pizza->addVeggie(Veggie::tomatos);
-    pizza->addVeggie(Veggie::pineapple);
-    pizza->addVeggie(Veggie::lettuce);
-    break;
+            pizza->addVeggie(Edible::veggie::tomatos);
+            pizza->addVeggie(Edible::veggie::pineapple);
+            pizza->addVeggie(Edible::veggie::lettuce);
+            break;
 
-  case PizzaType::bird:
-    pizza->addMeat(Meat::beef);
+        case Edible::pizzaType::moo:
+            pizza->addMeat(Edible::meat::beef);
 
-    pizza->addDiary(Diary::cheese);
-    pizza->addDiary(Diary::sourCream);
-    pizza->addDiary(Diary::milk);
+            pizza->addDiary(Edible::diary::cheese);
+            pizza->addDiary(Edible::diary::sourCream);
+            pizza->addDiary(Edible::diary::milk);
 
-    pizza->addVeggie(Veggie::tomatos);
-    pizza->addVeggie(Veggie::lettuce);
-    break;
-  }
+            pizza->addVeggie(Edible::veggie::tomatos);
+            pizza->addVeggie(Edible::veggie::lettuce);
+            break;
+    }
 
-  return pizza;
+    return pizza;
 }
